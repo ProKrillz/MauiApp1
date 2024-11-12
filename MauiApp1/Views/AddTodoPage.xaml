@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiApp1.Views.AddTodoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:MauiApp1.Converter"
+    xmlns:models="clr-namespace:MauiApp1.Model"
+    xmlns:vm="clr-namespace:MauiApp1.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="vm:AddEditTodoViewModel">
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IntEnumConverter x:Key="IntEnum" />
+        </ResourceDictionary>
+    </ContentPage.Resources>-->
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding CancelSaveCommand}" Text="Cancel" />
+        <ToolbarItem Command="{Binding SaveTodoCommand}" Text="Save" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#E8E8E8">
+            <!--<Label
+              BackgroundColor="{Binding StatusColor}"
+              IsVisible="{Binding StatusMessage, Converter={converters:StringBoolConverter}}"
+              Text="{Binding StatusMessage}" />-->
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout Padding="15" Spacing="20">
+
+                    <Label FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontFamily="FA-solid" />
+                                <Span Text=" " />
+                                <Span Text="Description" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry FontSize="Medium" Text="{Binding Todo.Description}" />
+
+                    <Label FontFamily="FA-solid" FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontFamily="FA-solid" />
+                                <Span Text=" " />
+                                <Span Text="Priority" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!--<Entry FontSize="Medium" Text="{Binding Todo.Priority}" />-->
+
+
+
+
+
+                    <Picker
+                        FontSize="Medium"
+                        ItemsSource="{Binding PriorityNames}"
+                        SelectedIndex="{Binding Todo.Priority, Converter={converters:IntEnumConverter}}" />
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
